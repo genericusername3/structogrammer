@@ -15,7 +15,7 @@ let localisation = (
     While: (condition) => [While #condition],
     For: (body) => [For #body],
     ForIn: (element, container) => [For each #element in #container],
-    ForTo: (start-declaration, end) => [Von #start-declaration bis #end],
+    ForTo: (start-declaration, end) => [From #start-declaration until #end],
     If: (condition) => [#condition?],
     Break: (value) => [#value],
   ),
