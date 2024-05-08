@@ -4,18 +4,18 @@ let stroke- = stroke;
 
 let localisation = (
   "de": (
-    While: (condition) => [Solange #condition],
-    For: (body) => [Für #body],
-    ForIn: (element, container) => [Für jedes #element aus #container],
-    ForTo: (start-declaration, end) => [Von #start-declaration bis #end],
+    While: (condition) => [solange #condition],
+    For: (body) => [für #body],
+    ForIn: (element, container) => [für jedes #element aus #container],
+    ForTo: (start-declaration, end) => [von #start-declaration bis #end],
     If: (condition) => [#condition?],
     Break: (value) => [#value],
   ),
   "en": (
-    While: (condition) => [While #condition],
-    For: (body) => [For #body],
-    ForIn: (element, container) => [For each #element in #container],
-    ForTo: (start-declaration, end) => [From #start-declaration until #end],
+    While: (condition) => [while #condition],
+    For: (body) => [for #body],
+    ForIn: (element, container) => [for each #element in #container],
+    ForTo: (start-declaration, end) => [from #start-declaration until #end],
     If: (condition) => [#condition?],
     Break: (value) => [#value],
   ),
@@ -523,7 +523,7 @@ let to-elements(
           x: 0, y: 1,
           colspan: 1,
           rowspan: measure-cells(..do-elements).bottom + 1,
-          stroke: (left: stroke, top: none, right: none, bottom: stroke),
+          stroke: (left: stroke, top: none, right: none, bottom: none),
         ),
       )
     }
@@ -576,8 +576,18 @@ let to-elements(
   }
 
   if "If" in spec {
-    if spec.keys() == ("If", "Then") or spec.keys() == ("If", "Else") {
-      let positive = "Then" in spec
+    if (
+      spec.keys() == ("If", "Then")
+      or spec.keys() == ("If", "Else")
+      or (
+        spec.keys() == ("If", "Then", "Else")
+        and (
+          spec.Then in ((), none)
+          or spec.Else in ((), none)
+        )
+      )
+    ) {
+      let positive = "Then" in spec and spec.Then not in ((), none)
       
       let then-elements = shift-cells(
           dx: if positive { 0 } else { +1 }, dy: +1,
@@ -618,7 +628,10 @@ let to-elements(
                 move(
                   dx: narrow-width - inset,
                   dy: -segment-height + inset,
-                  context { (localisation.at(text.lang, default: localisation.en).If)(spec.If) },
+                  context {
+                    let cond = (localisation.at(text.lang, default: localisation.en).If)(spec.If)
+                    box(width: measure(cond).width, cond)
+                  },
                 )
               }
             )
@@ -650,7 +663,10 @@ let to-elements(
                   move(
                     dx: -narrow-width + inset,
                     dy: -segment-height + inset,
-                    context { (localisation.at(text.lang, default: localisation.en).If)(spec.If) },
+                    context {
+                      let cond = (localisation.at(text.lang, default: localisation.en).If)(spec.If)
+                      box(width: measure(cond).width, cond)
+                    },
                   )
                 }
               )
@@ -679,6 +695,8 @@ let to-elements(
 
       let end-narrow-column-index = 0
       let then-end-narrow-columns = then-alloc-columns.rev().position((el) => el)
+
+      if then-end-narrow-columns == none { then-end-narrow-columns = then-alloc-columns.len() }
 
       let (then-columns, else-columns) = ((), ())
       
@@ -759,7 +777,10 @@ let to-elements(
         )
       }
 
-      let condition-element = context { (localisation.at(text.lang, default: localisation.en).If)(spec.If) }
+      let condition-element = context {
+        let cond = (localisation.at(text.lang, default: localisation.en).If)(spec.If)
+        box(width: measure(cond).width, cond)
+      }
           
       return (
         grid.cell(
