@@ -70,7 +70,7 @@ A `spec` (the positional argument to `structogram()`) can be one of the followin
 ### Control blocks
 
 Specs can contain the following control blocks, as dictionaries:
-#### `If`/`Then`/`Else`:
+#### 1. `If`/`Then`/`Else`:
 
   A conditional with the following keys:
 
@@ -94,7 +94,7 @@ Specs can contain the following control blocks, as dictionaries:
   Columns: Takes up columns according to its contents next to one another,
   inserting narrow columns for empty branches
 
-#### `For`/`Do`, `For`/`To`/`Do`, `For`/`In`/`Do`, `While`/`Do`, `Do`/`While`:
+#### 2. `For`/`Do`, `For`/`To`/`Do`, `For`/`In`/`Do`, `While`/`Do`, `Do`/`While`:
 
   A loop, with the loop control either at the top or bottom.
 
@@ -122,7 +122,7 @@ Specs can contain the following control blocks, as dictionaries:
 
   Columns: Inserts a narrow column left to its content.
 
-#### Method call (`Call`)
+#### 3. Method call (`Call`)
 
   A block indicating that a subroutine is executed here.
   Only accepts the key `Call`, which is the string name
@@ -136,7 +136,7 @@ Specs can contain the following control blocks, as dictionaries:
 
   Columns: One wide column
 
-#### Break/Return (`Break`)
+#### 4. Break/Return (`Break`)
 
   A block indicating that a subroutine is executed here.
   Only accepts the key `Break`, which is the target to break to
