@@ -31,7 +31,7 @@ You can then draw structograms, like so:
   )
 )
 ```
-which yields:
+which yields:<br>
 ![The structogram specified by the code above](examples/merge-sort.svg)
 
 ## Advanced usage
@@ -87,7 +87,7 @@ Specs can contain the following control blocks, as dictionaries:
   </details></li>
   <li><details>
     <summary><code>(If: "x > 5", Then: ("x = x - 1", "print x"), Else: "print x")</code></summary>
-    <img src="examples/if-then.svg", alt="Structogram with an if-branch that decrements and prints x if x is smaller than 5 or else just prints x">
+    <img src="examples/if-then-else.svg", alt="Structogram with an if-branch that decrements and prints x if x is smaller than 5 or else just prints x">
   </details></li>
   </ul>
 
