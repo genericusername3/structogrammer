@@ -1,4 +1,4 @@
-# structogrammer
+# [structogrammer](https://gitlab.com/czarlie/structogrammer)
 
 Draw Nassi-Shneiderman diagrams, also called structograms, in Typst.
 
