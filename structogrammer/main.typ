@@ -522,7 +522,7 @@ let to-elements(
           [],
           x: 0, y: 1,
           colspan: 1,
-          rowspan: measure-cells(..do-elements).bottom + 1,
+          rowspan: measure-cells(..do-elements).bottom,
           stroke: (left: stroke, top: none, right: none, bottom: none),
         ),
       )
@@ -556,7 +556,7 @@ let to-elements(
               context { (localisation.at(text.lang, default: localisation.en).While)(spec.While) },
             ),
           ),
-          x: 0, y: measure-cells(..do-elements).bottom + 1,
+          x: 0, y: measure-cells(..do-elements).bottom,
           colspan: columns.len(),
           rowspan: 1,
           stroke: (left: stroke, top: none, right: none, bottom: stroke),   
