@@ -34,7 +34,7 @@ You can then draw structograms, like so:
 which yields:<br>
 ![The structogram specified by the code above](https://gitlab.com/czarlie/structogrammer/-/raw/master/examples/merge-sort.svg)
 
-If `text.lang` is set to another language, this package will try to match inserted text to it. Currently, only "de" is supported
+If `text.lang` is set to another language, this package will try to match inserted text to it. Currently, only `"en"` and `"de"` are supported
 
 ## Advanced usage
 
