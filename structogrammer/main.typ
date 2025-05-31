@@ -910,6 +910,8 @@ let structogram(
       fill: secondary-fill,
       width: width,
     )[
+      #set align(left)
+      #set align(horizon)
       #set text(fill: title-fill)
       #v(inset / 2)
       #heading(bookmarked: false, outlined: false, numbering: none, level: 4)[#title]
@@ -919,7 +921,12 @@ let structogram(
     ]
   }
 
-  return box(width:width, fill: fill, [#set text(fill: text-fill);#s-grid], stroke: (bottom: stroke, right: stroke))
+  return box(width:width, fill: fill, [
+    #set align(left)
+    #set align(horizon)
+    #set text(fill: text-fill)
+    #s-grid
+  ], stroke: (bottom: stroke, right: stroke))
 }
 
 structogram
