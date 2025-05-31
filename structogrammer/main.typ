@@ -451,6 +451,7 @@ let to-elements(
   if spec.keys() == ("Call",) {
     return (
       grid.cell(
+        align: horizon,
         stack(
           dir: ltr,
           spacing: inset / 2,
@@ -458,7 +459,7 @@ let to-elements(
             width: segment-height / 5, height: segment-height,
             line(start: (100%, 0%), end: (100%, 100%), stroke: stroke),
           ),
-          align(horizon, box(inset: inset, spec.Call)),
+          box(inset: inset, spec.Call),
           align(
             right,
             box(
