@@ -882,7 +882,6 @@ let structogram(
   text-fill: black,
   title-fill: black,
 ) = {
-  
   let columns = allocate-columns(spec)
 
   if width == auto {
@@ -900,7 +899,7 @@ let structogram(
     ),
     columns: columns.map(col => if (col) { 1fr } else { narrow-width }),
   )
-  
+
   if title != none {
     return box(
       stroke: stroke,
@@ -910,6 +909,7 @@ let structogram(
       width: width,
     )[
       #set text(fill: title-fill)
+      #set grid.cell(align: horizon + left)
       #v(inset / 2)
       #heading(bookmarked: false, outlined: false, numbering: none, level: 4)[#title]
       #v(0.5em)
@@ -918,7 +918,12 @@ let structogram(
     ]
   }
 
-  return box(width:width, fill: fill, [#set text(fill: text-fill);#s-grid], stroke: (bottom: stroke, right: stroke))
+  return box(
+    width:width,
+    fill: fill,
+    stroke: (bottom: stroke, right: stroke),
+    [#set text(fill: text-fill);#set grid.cell(align: horizon + left);#s-grid],
+  )
 }
 
 structogram
