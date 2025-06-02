@@ -556,7 +556,7 @@ let to-elements(
               context { (localisation.at(text.lang, default: localisation.en).While)(spec.While) },
             ),
           ),
-          x: 0, y: measure-cells(..do-elements).bottom,
+          x: 0, y: measure-cells(..do-elements).bottom + 1,
           colspan: columns.len(),
           rowspan: 1,
           stroke: (left: stroke, top: none, right: none, bottom: stroke),   
